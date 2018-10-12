@@ -1,7 +1,6 @@
 /**
- * The receipt returned from a pay station. Responsibilities:
+ * Implementation of Receipt.
  *
- * 1) Know the minutes parking time the receipt represents
  *
  * This source code is from the book "Flexible, Reliable Software: Using
  * Patterns and Agile Development" published 2010 by CRC Press. Author: Henrik B
@@ -11,15 +10,19 @@
  * implied. You may study, use, modify, and distribute it for non-commercial
  * purposes. For any commercial use, see http://www.baerbak.com/
  */
-package paystation.domain;
+package paystation;
 
-public interface Receipt {
-//test
-    /**
-     * Return the number of minutes this receipt is valid for.
-     *
-     * @return number of minutes parking time
-     */
-    public int value();
+public class ReceiptImpl implements Receipt {
+
+    private int value;
+
+    public ReceiptImpl(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public int value() {
+        return value;
+    }
     //test
 }
