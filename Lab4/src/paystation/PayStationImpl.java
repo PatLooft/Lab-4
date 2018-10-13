@@ -117,6 +117,9 @@ public class PayStationImpl implements PayStation {
     private void reset() {
         timeBought = insertedSoFar = nickleCount = dimeCount = quarterCount = 0;
     }
-    //test
+    
+    //create interface for rateStrategy
+    //create 3 classes for each strategy
+    
 
 }
