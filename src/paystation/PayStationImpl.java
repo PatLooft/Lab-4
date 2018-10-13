@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.*;
 import java.util.HashMap.*;
+
 /*
     Pat Looft   - tug16392@temple.edu
     Chris Huang - tuf61096@temple.edu
@@ -14,11 +15,9 @@ import java.util.HashMap.*;
  *
  * Responsibilities:
  *
- * 1) Accept payment; 
- * 2) Calculate parking time based on payment; 
- * 3) Know earning, parking time bought; 
- * 4) Issue receipts; 
- * 5) Handle buy and cancel events.
+ * 1) Accept payment; 2) Calculate parking time based on payment; 3) Know
+ * earning, parking time bought; 4) Issue receipts; 5) Handle buy and cancel
+ * events.
  *
  * This source code is from the book "Flexible, Reliable Software: Using
  * Patterns and Agile Development" published 2010 by CRC Press. Author: Henrik B
@@ -29,28 +28,36 @@ import java.util.HashMap.*;
  * purposes. For any commercial use, see http://www.baerbak.com/
  */
 public class PayStationImpl implements PayStation {
-    
+
     private int insertedSoFar;
     private int timeBought;
 
     private int lastPayment;
 
-    public HashMap<Integer,Integer> record = new HashMap<>();
+    public HashMap<Integer, Integer> record = new HashMap<>();
+
+    //number of coins
+    private int nickleCount = 0;
+    private int dimeCount = 0;
+    private int quarterCount = 0;
 
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
         switch (coinValue) {
             case 5:
-                record.put(5,1);
+                nickleCount++;
+                record.put(5, nickleCount);
                 lastPayment = 5;
                 break;
             case 10:
-                record.put(10,1);
+                dimeCount++;
+                record.put(10, dimeCount);
                 lastPayment = 10;
                 break;
             case 25:
-                record.put(25,1);
+                quarterCount++;
+                record.put(25, quarterCount);
                 lastPayment = 25;
                 break;
             default:
@@ -76,39 +83,37 @@ public class PayStationImpl implements PayStation {
         return r;
     }
 
-
-    /** Cancel the present transaction. Resets the paystation for a
-     * new transaction.
-     * @return A Map defining the coins returned to the user.
-     * The key is the coin type and the associated value is the
-     * number of these coins that are returned.
-     * The Map object is never null even if no coins are returned.
-     * The Map will only contain only keys for coins to be returned.
-     * The Map will be cleared after a cancel or buy.
+    /**
+     * Cancel the present transaction. Resets the paystation for a new
+     * transaction.
+     *
+     * @return A Map defining the coins returned to the user. The key is the
+     * coin type and the associated value is the number of these coins that are
+     * returned. The Map object is never null even if no coins are returned. The
+     * Map will only contain only keys for coins to be returned. The Map will be
+     * cleared after a cancel or buy.
      */
-
     @Override
     public Map cancel() {
         //key = coin type, value = total quantity
-        Map temp = (Map)record.clone();
-        insertedSoFar -= lastPayment;
+        Map temp = (Map) record.clone();
+        //insertedSoFar -= lastPayment;
         timeBought = insertedSoFar / 5 * 2;
-//        timeBought = 0;
-//        insertedSoFar = 0;
         record.clear();
+        reset();
         return temp;
     }
 
     @Override
-    public int empty(){
+    public int empty() {
         int temp = insertedSoFar;
         lastPayment = 0;
         insertedSoFar = 0; //set total to 0
         return temp; //return last call
     }
-    
+
     private void reset() {
-        timeBought = insertedSoFar = 0;
+        timeBought = insertedSoFar = nickleCount = dimeCount = quarterCount = 0;
     }
     //test
 
