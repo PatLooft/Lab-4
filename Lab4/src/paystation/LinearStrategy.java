@@ -11,7 +11,17 @@ package paystation;
  */
 public class LinearStrategy extends RateStrategy {
 
-//    Time= (amount *2)/5
+    @Override
+    public int getMoneyInserted() {
+        return moneyInserted;
+    }
+
+    @Override
+    public void setMoneyInserted(int moneyInserted) {
+        this.moneyInserted = moneyInserted;
+    }
+
+    //    Time= (amount *2)/5
     private int moneyInserted;
     private int timePurchased;
 

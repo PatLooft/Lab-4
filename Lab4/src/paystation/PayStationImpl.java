@@ -74,6 +74,7 @@ public class PayStationImpl implements PayStation {
         }
 
         insertedSoFar += coinValue;
+        currentRate.setMoneyInserted(insertedSoFar);
         timeBought = currentRate.calculateTimePurchased();
     }
 
@@ -124,6 +125,23 @@ public class PayStationImpl implements PayStation {
     
     private void reset() {
         timeBought = insertedSoFar = nickleCount = dimeCount = quarterCount = 0;
+    }
+
+    public void switchRateStrategy(int input){
+        switch (input){
+            case 1:
+                this.currentRate = linRate;
+                break;
+            case 2:
+                this.currentRate = progRate;
+                break;
+            case 3:
+                this.currentRate = altRate;
+                break;
+            default:
+                this.currentRate = linRate;
+                break;
+        }
     }
     
     //create interface for rateStrategy

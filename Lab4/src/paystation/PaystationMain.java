@@ -51,7 +51,12 @@ public class PaystationMain {
                     break;
                 case 5:
                     //Change rate strategy
+                    do {
+                        System.out.println("Which rate strategy would you like to use?\n1)Linear\n2)Progressive\n3}Alternating\n\n");
+                        input = reader.nextInt();
+                    }while(input != 1 && input != 2 && input != 3);
 
+                    p.switchRateStrategy(input);
                     break;
                 case 6:
                     //Will exit the system
