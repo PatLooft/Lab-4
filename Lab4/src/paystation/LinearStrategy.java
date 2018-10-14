@@ -9,6 +9,6 @@ package paystation;
  *
  * @author johnn
  */
-public class LinearStrategy implements RateStrategy {
+public class LinearStrategy extends RateStrategy {
     
 }
