@@ -33,6 +33,14 @@ public class PayStationImpl implements PayStation {
     private int insertedSoFar;
     private int timeBought;
 
+
+    private LinearStrategy linRate = new LinearStrategy();
+    private AlternatingStrategy altRate = new AlternatingStrategy();
+    private ProgressiveStrategy progRate = new ProgressiveStrategy();
+    //the rate strategy being used at the given time. Defualts to linear
+    public RateStrategy currentRate = (RateStrategy) linRate;
+
+
     private int lastPayment;
 
     public HashMap<Integer,Integer> record = new HashMap<>();
@@ -66,7 +74,7 @@ public class PayStationImpl implements PayStation {
         }
 
         insertedSoFar += coinValue;
-        timeBought = insertedSoFar / 5 * 2;
+        timeBought = currentRate.calculateTimePurchased();
     }
 
     @Override

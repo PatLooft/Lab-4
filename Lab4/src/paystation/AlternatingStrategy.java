@@ -10,5 +10,13 @@ package paystation;
  * @author johnn
  */
 public class AlternatingStrategy extends RateStrategy {
-    
+
+    @Override
+    protected int calculateTimePurchased() {
+
+
+
+
+        return 0;
+    }
 }

@@ -17,7 +17,7 @@ public abstract class RateStrategy {
 ////+ timePurchased: int
 ////+ calculateTimeBought(int): int
     private int moneyInserted;
-    private double timePurchased;
+    private int timePurchased;
 
     //defualt constructor
     public RateStrategy(){
@@ -28,7 +28,7 @@ public abstract class RateStrategy {
 
     public RateStrategy(int monIns){
         moneyInserted = monIns;
-        timePurchased = calculateTimePurchased(monIns);
+        timePurchased = calculateTimePurchased();
     }
 
     public void setMoneyInserted(int monIns){
@@ -41,9 +41,8 @@ public abstract class RateStrategy {
 
     /** calculateTimePurchased - calculates the time purchased for the given rate strategy
      *
-     * @param monIns - the amount of money inserted into the payStation
      * @return the amount of time purchased as a double
      */
-    protected abstract double calculateTimePurchased(int monIns);
+    protected abstract int calculateTimePurchased();
 
 }
