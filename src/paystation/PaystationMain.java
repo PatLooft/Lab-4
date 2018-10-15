@@ -21,12 +21,11 @@ public class PaystationMain {
                     + "\n4)cancel\n5)Change rate Strategy \n6) Exit Program\n");
             if (reader.hasNextInt()) {
                 input = reader.nextInt();
-            }
-            else {
+            } else {
                 reader.next(); //clears reader
-                System.out.println("Invalid input");
+                System.out.println("That's not even an int");
                 continue;
-                
+
             }
             switch (input) {
                 case 1:
@@ -51,7 +50,12 @@ public class PaystationMain {
                     break;
                 case 5:
                     //Change rate strategy
+                    do {
+                        System.out.println("Which rate strategy would you like to use?\n1)Linear\n2)Progressive\n3}Alternating\n\n");
+                        input = reader.nextInt();
+                    } while (input != 1 && input != 2 && input != 3);
 
+                    p.switchRateStrategy(input);
                     break;
                 case 6:
                     //Will exit the system
@@ -59,7 +63,7 @@ public class PaystationMain {
                     System.exit(0);
                 default:
                     System.out.println("Please choose 1 through 6");
-                    input = reader.nextInt();
+                    continue;
             }
         }
 //test

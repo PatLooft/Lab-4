@@ -14,7 +14,7 @@
 package paystation;
 
 public interface Receipt {
-
+//test
     /**
      * Return the number of minutes this receipt is valid for.
      *
